@@ -9,27 +9,14 @@
     </div>
     <div id="status"></div>
     <script>
-        var MyMod = (function () {            
-            var clock = 10;
-            var countDownId = 0;           
-
-            function countDown() {
-                if (clock > 0) {
-                    clock--;
-                    document.getElementById("status").innerHTML = clock;
-                }
-                else {
-                    clearInterval(countDownId);
-                    console.log("clock:", clock);
-                }
-            }
+        var MyMod = (function () {
 
             // You can also put the coundDown function implementation inside the setInterval function call.
-            function start(seconds) {
-                countDownId = setInterval(function () {
-                    if (seconds > 0) {
+            function countDown(seconds) {
+                var countDownId = setInterval(function () {
+                    if (seconds > -1) {                       
+                        document.getElementById("status").innerHTML = "Time left: " + seconds;
                         seconds--;
-                        document.getElementById("status").innerHTML = seconds;
                     }
                     else {
                         clearInterval(countDownId);
@@ -39,11 +26,11 @@
             }
 
             return {
-                start: start,
+                countDown: countDown,
             }
         })();
 
-        MyMod.start(5);
+        MyMod.countDown(5);
     </script>
 </body>
 </html>
