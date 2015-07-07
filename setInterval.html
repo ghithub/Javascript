@@ -24,8 +24,18 @@
                 }
             }
 
-            function start() {
-                countDownId = setInterval(countDown, 1000);
+            // You can also put the coundDown function implementation inside the setInterval function call.
+            function start(seconds) {
+                countDownId = setInterval(function () {
+                    if (seconds > 0) {
+                        seconds--;
+                        document.getElementById("status").innerHTML = seconds;
+                    }
+                    else {
+                        clearInterval(countDownId);
+                        console.log("seconds:", seconds);
+                    }
+                }, 1000);
             }
 
             return {
@@ -33,7 +43,7 @@
             }
         })();
 
-        MyMod.start();
+        MyMod.start(5);
     </script>
 </body>
 </html>
