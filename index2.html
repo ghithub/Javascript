@@ -1,0 +1,100 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {   
+	$('p').next().css('background-color', 'red');
+	
+	DoSomething(1, 2, function(){
+		//alert('you passed in 1 and 2');
+	});
+	
+	Trim('   white spaces leading and trailing      ', function( r){
+	     //alert(r);
+	});
+	
+	$('#div2').click(
+	   function(){
+	      alert('u clicked div2');
+	   }
+	);
+	
+	$('#span1').click(
+	    function(e)
+		{
+		   e.stopPropagation();
+		   alert ('you clicked span1');
+		}
+	);
+	
+	elements = document.querySelectorAll('div>span');
+	
+	console.log(elements[0].childNodes[0].nodeValue);
+	
+	
+	
+	
+	$('a').click(function(e){
+	    e.preventDefault();
+		console.log('i am not going to google.');
+		var data = $('input').serialize();
+	console.log("serialized: " + data);
+	});
+	
+  });
+  
+  function DoSomething(x, y, callback)
+  {
+     //alert('sum is ' + (x + y));	 
+	 callback();
+  }
+  
+function Trim(s, callback)
+  {
+      var trimmed = $.trim(s);
+      //alert('trimmed: ' + trimmed);
+      callback('in callback: ' + trimmed);
+  }
+  
+  
+  </script>
+</head>
+<body>
+ 
+<p>Some paragraph</p>
+ 
+ <div id="div1" tabindex="100"> small div </div>
+ 
+ <p>Some other paragraph</p>
+ 
+ 
+ <div id="div2">
+ This is div 2
+ 
+ <br />
+ <span id="span1">
+   And this is span 1 inside div2
+ </span>
+ </div>
+ 
+ <div id="div3">
+ this is div 3
+ </div>
+ <form>
+ <div id="inputdiv">
+   <input type="text" id="name" />
+ </div>
+ </form>
+ <p>
+ <a href="http://www.google.com">google</a>
+ </p>
+ 
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>test</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ <div id="status">
+</div>
+
+<script>
+function countDown(seconds, element)
+{
+    var div = document.getElementById(element);
+    div.innerHTML = "Timer: " + seconds;
+
+    if (seconds < 1) {
+        clearTimeout(timer);
+        div.innerHTML = "Time!";
+        console.log("seconds", seconds);        
+    }
+
+    seconds--;
+    var timer = setTimeout("countDown(" + seconds + ", '" + element + "')", 1000);
+}
+
+countDown(5, "status");
+</script>  
+</body>
+</html>

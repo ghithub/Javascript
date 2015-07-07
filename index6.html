@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TEST ONLY</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+var mod = (function(){
+   var counter = 0; 
+   
+   function inc(){
+      counter += 1;
+	  return counter;
+   }
+   
+   function dec(){
+      counter -= 1;
+	  return counter;
+   }
+   
+   function reset(){
+      counter =0;
+	  return counter;
+   }
+   
+   return {
+      increment: inc,
+	  decrement: dec,
+	  reset: reset
+   };   
+})();
+</script>
+
+</head>
+<body>
+
+<p>
+   yes, there you go.
+</p>
+
+
+
+
+</body>
+</html>

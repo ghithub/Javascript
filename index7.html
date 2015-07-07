@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>test</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ <div> <a href="#" onclick="clicked();">Click here, this won't work.</a>
+
+</div>
+<div> <a href="#" onclick="clicked2();">Click here, this works.</a>
+
+</div>
+<script>
+    $(function() {
+        function clicked() {
+            alert("yes, clicked.");
+        }
+    });
+
+    function clicked2() {
+        alert("yes, clicked2.");
+    }
+</script>
+  </script>
+</body>
+</html>
