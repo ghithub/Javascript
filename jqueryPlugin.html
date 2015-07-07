@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>jQuery plugin test</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ <div class="test"> 
+     A basic jQuery plugin. $.fn.functionName = function(arguments){
+       // do something about this and return this.     
+     }
+</div>
+
+<script>
+    (function ($) {
+        $.fn.applyBackColor = function (color) {
+            this.css({ "background-color": color, "padding": "1em" });
+            return this;
+        };
+    })(jQuery);
+
+    
+    $("div.test").applyBackColor("orange").css("border", "5px solid red");
+
+
+</script>
+</body>
+</html>
