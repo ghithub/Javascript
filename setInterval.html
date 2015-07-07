@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>setInterval test</title>
+</head>
+<body>
+    <div>
+        A count down timer using javascript setInterval.
+    </div>
+    <div id="status"></div>
+    <script>
+        var MyMod = (function () {            
+            var clock = 10;
+            var countDownId = 0;           
+
+            function countDown() {
+                if (clock > 0) {
+                    clock--;
+                    document.getElementById("status").innerHTML = clock;
+                }
+                else {
+                    clearInterval(countDownId);
+                    console.log("clock:", clock);
+                }
+            }
+
+            function start() {
+                countDownId = setInterval(countDown, 1000);
+            }
+
+            return {
+                start: start,
+            }
+        })();
+
+        MyMod.start();
+    </script>
+</body>
+</html>
