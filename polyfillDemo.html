@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A simple polyfill demo</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div>
+        A simple example of polyfill of querySelectorAll for IE7 provided by https://gist.github.com/connrs/2724353.
+    </div>
+    <script>
+        if (!document.querySelectorAll) {
+            //console.log("no QSA.")
+            document.querySelectorAll = function (selector) {
+                var doc = document,
+                    head = doc.documentElement.firstChild,
+                    styleTag = doc.createElement('STYLE');
+                head.appendChild(styleTag);
+                //console.log("head", head);
+                doc.__qsaels = [];
+                var css = selector + "{x:expression(document.__qsaels.push(this))}";
+                //console.log("css:", css);
+                styleTag.styleSheet.cssText = selector + css;
+
+                //It is abusing the expression "feature" of CSS. 
+                //When computing the style of the x property (which 
+                //happens on the reflow triggered by scrollBy(0, 0)), 
+                //Internet Explorer will execute this snippet for all 
+                //elements that match the selector.
+                //see: http://stackoverflow.com/questions/25594395/how-does-this-polyfill-work-for-document-queryselectorall
+                window.scrollBy(0, 0); 
+
+                return doc.__qsaels;
+            }
+        }
+
+        var div = document.querySelectorAll("div")[0];
+        //div.appendChild(document.createElement("span").appendChild(document.createTextNode("a span created dynamically.")));
+        div.innerHTML = "updated the div text.";
+
+    </script>
+</body>
+</html>
