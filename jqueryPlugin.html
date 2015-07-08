@@ -7,23 +7,32 @@
 </head>
 <body>
  <div class="test"> 
-     A basic jQuery plugin. $.fn.functionName = function(arguments){
+     <p>basic jQuery plugin. </p> 
+     <pre>
+     $.fn.functionName = function(options){
        // do something about this and return this.     
      }
+</pre>
 </div>
 
 <script>
     (function ($) {
-        $.fn.applyBackColor = function (color) {
-            this.css({ "background-color": color, "padding": "1em" });
+        $.fn.applyStyles = function (options) {
+            var opts = $.extend({}, $.fn.applyStyles.defaults, options);
+            this.css(opts);
             return this;
         };
     })(jQuery);
 
+    $.fn.applyStyles.defaults = {
+        "color": "red",
+        "background-color": "yellow",
+        "border": "2px solid red"
+    };
+
+    $.fn.applyStyles.defaults.color = "blue";
     
-    $("div.test").applyBackColor("orange").css("border", "5px solid red");
-
-
+    $("div.test").applyStyles({"background-color": "gray", "border":"6px groove green", "padding": "1em"});
 </script>
 </body>
 </html>
